@@ -1,0 +1,13 @@
+#!/bin/bash
+
+staging=0;
+rsa_key_size=4096;
+email="maxim.web.developer@gmail.com";
+domain=$1
+
+if [ -z $1 ]; then echo "Invalid domain name."; exit 1; fi;
+echo "### Requesting Let's Encrypt certificate for $1 domain ..."
+
+if [ $staging != "0" ]; then staging_arg="--staging"; fi
+
+docker-compose run --rm --entrypoint "certbot certonly $staging_arg -v --webroot -w /var/www/certbot --cert-name $domain --email $email --rsa-key-size $rsa_key_size -d $domain --agree-tos --force-renewal --non-interactive" certbot

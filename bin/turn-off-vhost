@@ -1,0 +1,6 @@
+#!/bin/bash
+
+if [ -z $1 ]; then echo "Invalid protocol."; exit 1; fi;
+if [ -z $2 ]; then echo "Invalid vhost name."; exit 1; fi;
+
+docker-compose run --rm proxy bash -c "rm /etc/nginx/includes/$2.$1.conf"

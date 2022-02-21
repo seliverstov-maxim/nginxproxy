@@ -1,0 +1,5 @@
+#!/bin/bash
+
+ssh maxim@81.163.30.73 'mkdir -p ~/reverse-proxy;'
+scp -r ./* maxim@81.163.30.73:~/reverse-proxy/
+ssh maxim@81.163.30.73 'mv ~/reverse-proxy/docker-compose-amd.yml ~/reverse-proxy/docker-compose.yml'
